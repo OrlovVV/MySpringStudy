@@ -4,6 +4,15 @@ public class Client {
     String id;
     String fullname;
 
+    public Client(){
+
+    }
+
+    public Client(String id, String fullName){
+        this.id = id;
+        this.fullname = fullname;
+    }
+
     public void setId(String id){
        this.id = id;
     }
