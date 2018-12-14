@@ -1,4 +1,4 @@
-package com.yet.spring.core.loggers;
+package core.loggers;
 
 public class ConsoleEventLoggers {
 

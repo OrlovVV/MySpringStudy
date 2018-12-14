@@ -1,8 +1,8 @@
-package com.yet.spring.core.beans;
+package core.beans;
 
 public class Client {
     String id;
-    String fullname;
+    String fullName;
 
     public Client(){
 
@@ -10,23 +10,23 @@ public class Client {
 
     public Client(String id, String fullName){
         this.id = id;
-        this.fullname = fullname;
+        this.fullName = fullName;
     }
 
     public void setId(String id){
        this.id = id;
     }
 
-    public void setFullname(String fullname){
-       this.fullname = fullname;
+    public void setFullName(String fullName){
+       this.fullName = fullName;
     }
 
     public String getId(){
         return id;
     }
 
-    public String getFullname(){
-        return fullname;
+    public String getFullName(){
+        return fullName;
     }
 
 
