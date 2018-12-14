@@ -9,13 +9,23 @@
         <constructor-arg value="John Smith"/>
     </bean>
 
-    <bean id="eventLogger" class="core.loggers.ConsoleEventLoggers"/>
+    <bean id="event" class="core.beans.Event" scope="prototype">
+        <constructor-arg>
+            <bean class="java.util.Date"/>
+        </constructor-arg>
+        <constructor-arg ref="dateFormat"/>
+    </bean>
+
+
+    <bean id="eventLogger" class="core.loggers.ConsoleEventLogger"/>
 
     <bean id="app" class="core.App">
         <constructor-arg ref="client"/>
         <constructor-arg ref="eventLogger"/>
     </bean>
 
+    <bean id="dateFormat" class="java.text.DateFormat"
+          factory-method="getDateTimeInstance"/>
 
 
 </beans>

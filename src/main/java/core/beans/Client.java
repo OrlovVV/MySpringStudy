@@ -1,14 +1,15 @@
 package core.beans;
 
 public class Client {
-    String id;
-    String fullName;
+    private String id;
+    private String fullName;
 
     public Client(){
 
     }
 
     public Client(String id, String fullName){
+        super();
         this.id = id;
         this.fullName = fullName;
     }

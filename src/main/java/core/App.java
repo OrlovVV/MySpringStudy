@@ -1,42 +1,37 @@
 package core;
 
 import core.beans.Client;
-import core.loggers.ConsoleEventLoggers;
+import core.beans.Event;
+import core.loggers.EventLogger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class App {
-    Client client;
-    ConsoleEventLoggers eventLoggers;
+    private Client client;
+    private EventLogger eventLogger;
 
-    public App(){
-    }
-
-    public App(Client client, ConsoleEventLoggers eventLoggers){
-        this.client = client;
-        this.eventLoggers = eventLoggers;
-    }
-
-    public static void main(String[] args){
-        /*
-        App app = new App();
-
-        app.client = new Client("1", "John Smith");
-        app.eventLoggers = new ConsoleEventLoggers();
-*/
-
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+    public static void main(String[] args) {
+        @SuppressWarnings("resource") // We will remove this suppress in further lessons
+                ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
         App app = (App) ctx.getBean("app");
 
-        app.logEvent("Some event for 1");
-        app.logEvent("Some event for 2");
+        Event event = ctx.getBean(Event.class);
+        app.logEvent(event, "Some event for 1");
 
+        event = ctx.getBean(Event.class);
+        app.logEvent(event, "Some event for 2");
     }
 
+    public App(Client client, EventLogger eventLogger) {
+        super();
+        this.client = client;
+        this.eventLogger = eventLogger;
+    }
 
-    private void logEvent(String msg){
+    private void logEvent(Event event, String msg) {
         String message = msg.replaceAll(client.getId(), client.getFullName());
-        eventLoggers.logEvent(message);
+        event.setMsg(message);
+        eventLogger.logEvent(event);
     }
 
 }
